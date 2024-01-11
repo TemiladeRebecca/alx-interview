@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Interview question that unlocks boxes, each box contains a list of keys
+Function that unlocks boxes, each box contains a list of keys
 that can open other boxes
 """
 
