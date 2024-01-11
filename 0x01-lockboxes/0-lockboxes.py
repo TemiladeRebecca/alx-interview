@@ -1,17 +1,22 @@
 #!/usr/bin/python3
 """
-This method unlocks boxes, there are a number of boxes and each box numbered sequentially.
+This method unlocks boxes, there are a number of boxes and each box numbered sequentially
 Each box contains keys to other boxes
 """
 
 def canUnlockAll(boxes):
-    unlocked = set([0])  # Use a set for faster membership testing
-
-    for box_index, box_elements in enumerate(boxes):
-        if not box_elements:
+    '''Checks if all the boxes in a list of boxes containing the keys
+    (indices) to other boxes can be unlocked given that the first
+    box is unlocked.
+    '''
+    n = len(boxes)
+    seen_boxes = set([0])
+    unseen_boxes = set(boxes[0]).difference(set([0]))
+    while len(unseen_boxes) > 0:
+        boxIdx = unseen_boxes.pop()
+        if not boxIdx or boxIdx >= n or boxIdx < 0:
             continue
-
-        unlocked |= set(box_elements) & set(range(len(boxes))) - {box_index}
-        # Combine the sets to update unlocked indices efficiently
-
-    return len(unlocked) == len(boxes)
+        if boxIdx not in seen_boxes:
+            unseen_boxes = unseen_boxes.union(boxes[boxIdx])
+            seen_boxes.add(boxIdx)
+    return n == len(seen_boxes)
