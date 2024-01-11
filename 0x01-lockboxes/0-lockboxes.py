@@ -4,22 +4,14 @@ This method unlocks boxes, there are a number of boxes and each box numbered seq
 Each box contains keys to other boxes
 """
 
-
 def canUnlockAll(boxes):
-    """Function to unlock all boxes"""
-    unlocked = [0]
+    unlocked = set([0])  # Use a set for faster membership testing
 
     for box_index, box_elements in enumerate(boxes):
-        # Enumerates and returns box indices and their corresponding
-        # elements which are keys in this case
         if not box_elements:
-            continue        # if the box has no keys or is empty
+            continue
 
-        for key in box_elements:
-            if key < len(boxes) and key != box_index and key not in unlocked:
-                unlocked.append(key)
-                # the box is unlocked only if conditions are met
+        unlocked |= set(box_elements) & set(range(len(boxes))) - {box_index}
+        # Combine the sets to update unlocked indices efficiently
 
-    if len(unlocked) == len(boxes):
-        return True
-    return False
+    return len(unlocked) == len(boxes)
