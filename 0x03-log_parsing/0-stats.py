@@ -6,6 +6,7 @@ and computes metrics based on inputs
 
 
 import sys
+
 # Initialize a dict to store counts for each status code
 # The keys are status codes and initially set to 0
 status_code_counts = {'200': 0, '301': 0, '400': 0,
@@ -26,7 +27,7 @@ try:
             status_code = words[-2]
             size = int(words[-1])
             # Update count for status code in dict
-            if status_code in status_code_counts:
+            if status_code in status_code_counts.keys():
                 status_code_counts[status_code] += 1
             # Update the total file size and line counter
             total_size += size
@@ -49,3 +50,5 @@ finally:
     for key, value in sorted(status_code_counts.items()):
         if value != 0:
             print('{}: {}'.format(key, value))
+
+               
