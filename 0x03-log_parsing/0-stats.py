@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+"""
+script that reads stdin line by line
+and computes metrics based on inputs
+"""
+
+
 import sys
 
 # Initialize a dictionary to store counts for each HTTP status code
