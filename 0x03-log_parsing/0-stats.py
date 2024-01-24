@@ -7,29 +7,29 @@ and computes metrics based on inputs
 
 import sys
 
-# Initialize a dictionary to store counts for each HTTP status code
-# The keys are status codes, and the values are initially set to 0
+# Initialize a dict to store counts for each status code
+# The keys are status codes and initially set to 0
 status_code_counts = {'200': 0, '301': 0, '400': 0,
                       '401': 0, '403': 0, '404': 0,
                       '405': 0, '500': 0}
-
-# Variables to keep track of the total file size and line counter
+# Initialize variables to keep track
+# of the total file size and a line counter
 total_size = 0
 line_counter = 0
 
 try:
-    # Loop through each line of input from the standard input (stdin)
+    # Loop through each line of input from the stdin
     for line in sys.stdin:
         # Split the line into words
         words = line.split(" ")
 
         # Check if the line has more than 4 words
         if len(words) > 4:
-            # Extract the HTTP status code and size from the log entry
+            # Extract the status code and size from the log entry
             status_code = words[-2]
             size = int(words[-1])
 
-            # Update the count for the current status code in the dictionary
+            # Update the count for the current status code in the dict
             if status_code in status_code_counts:
                 status_code_counts[status_code] += 1
 
@@ -43,9 +43,9 @@ try:
             print('File size: {}'.format(total_size))
 
             # Print the counts of each status code in sorted order
-            for code, count in sorted(status_code_counts.items()): 
-                if count != 0:
-                    print('{}: {}'.format(code, count)) 
+            for key, value in sorted(status_code_counts.items()): 
+                if value != 0:
+                    print('{}: {}'.format(key, value)) 
 
 except Exception as error:
     # Catch and ignore exceptions
@@ -56,6 +56,6 @@ finally:
     print('File size: {}'.format(total_size))
 
     # Print the counts of each status code in sorted order
-    for code, count in sorted(status_code_counts.items()):
-        if count != 0:
-            print('{}: {}'.format(code, count))
+    for key, value in sorted(status_code_counts.items()):
+        if value != 0:
+            print('{}: {}'.format(key, value))
