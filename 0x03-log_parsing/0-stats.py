@@ -10,7 +10,7 @@ import sys
 cache = {'200': 0, '301': 0, '400': 0, '401': 0,
          '403': 0, '404': 0, '405': 0, '500': 0}
 # Initializes a dict named cache with status codes 
-# as keys and their counts as values, all set to 0 initially
+# as keys and their counts as values set to 0
 total_size = 0
 counter = 0
 
