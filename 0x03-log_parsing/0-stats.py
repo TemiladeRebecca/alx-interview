@@ -9,7 +9,8 @@ import sys
 
 # Initialize a dictionary to store counts for each HTTP status code
 # The keys are status codes, and the values are initially set to 0
-status_code_counts = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0, '404': 0, '405': 0, '500': 0}
+status_code_counts = {'200': 0, '301': 0, '400': 0,
+                      '401': 0, '403': 0, '404': 0, '405': 0, '500': 0}
 
 # Initialize variables to keep track of the total file size and a line counter
 total_size = 0
@@ -21,7 +22,7 @@ try:
         # Split the line into words
         words = line.split(" ")
 
-        # Check if the line has more than 4 words (a simple check for a valid log entry)
+        # Check if the line has more than 4 words
         if len(words) > 4:
             # Extract the HTTP status code and size from the log entry
             status_code = words[-2]
@@ -43,14 +44,14 @@ try:
             # Print the counts of each status code in sorted order
             for code, count in sorted(status_code_counts.items()): 
                 if count != 0:
-                    print('{}: {}'.format(code, count)) # code equals key and count its value
+                    print('{}: {}'.format(code, count)) 
 
 except Exception as error:
     # Catch and ignore exceptions
     pass
 
 finally:
-    # Finally block ensures that file size and status code counts are printed even after exceptions
+    # Ensures that file size and status code counts are printed even after exceptions
     print('File size: {}'.format(total_size))
 
     # Print the counts of each status code in sorted order
